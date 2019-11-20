@@ -1,0 +1,30 @@
+version: '3.2'
+
+services:
+  php72:
+    build:
+      context: .
+      dockerfile: docker/php72/Dockerfile
+    working_dir: /app
+    volumes:
+      - .:/app:delegated
+  php73:
+    build:
+      context: .
+      dockerfile: docker/php73/Dockerfile
+    working_dir: /app
+    volumes:
+      - .:/app:delegated
+  php74:
+    build:
+      context: .
+      dockerfile: docker/php74/Dockerfile
+    working_dir: /app
+    volumes:
+      - .:/app:delegated
+    environment:
+      - TRAVIS
+      - TRAVIS_PULL_REQUEST
+      - TRAVIS_REPO_SLUG
+      - TRAVIS_BRANCH
+      - INFECTION_BADGE_API_KEY

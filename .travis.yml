@@ -1,0 +1,24 @@
+language: php
+services:
+  - docker
+before_install:
+  - docker-compose build --no-cache
+script:
+  - rm -f composer.lock
+  - docker-compose run --rm php72 composer install
+  - docker-compose run --rm php72 vendor/bin/psalm
+  - docker-compose run --rm php72 vendor/bin/phpunit
+  - rm -f composer.lock
+  - docker-compose run --rm php73 composer install
+  - docker-compose run --rm php73 vendor/bin/psalm
+  - docker-compose run --rm php73 vendor/bin/phpunit
+  - rm -f composer.lock
+  - docker-compose run --rm php74 composer install
+  - docker-compose run --rm php74 vendor/bin/psalm
+  - docker-compose run --rm php74 vendor/bin/phpunit --coverage-clover=coverage.xml --coverage-text
+  - docker-compose run --rm php74 vendor/bin/infection --threads=4 --min-msi=95
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+env:
+  global:
+    secure: TUUrFyb5hf/eEFKux0Op3HU5P/nSQ98ekalCyEYRv8mw7t5uF2xN1rlXeYdcsoA/W8pfC5cqtLCMcGVrTtw/p1WUR74HmsLhwvdMoCPsiqw3zA4Dr71eyR5vUOGrA4zcCuNLMi5RdWSuGalA+ijjMIWxJGw6+6JyKVLyC8sExP2ZVLH2L2S2WDUjpl+apS8Og2BZUUoTZiLFf/0BaANgJfwPqAczHYhS54EXCdumeb6HNqaj9uXMLrhRxfPeh9+InNrVRM/XRLTuUPCIhykFgBMlmjSScArDboqlIfApYRQFY4+lNb1rk5Pqik4kWguCLJE7oPpZHGz2jb5fUYOifo92PIQFtwdbf3/xLrL+xYl6EX/yww77yvbveUqNgY7yYcAxVzG3k66m0a66EGuBkwNRIBlZtDpOtGX0lXHo6ayrPkZ99lwESZ4CSohH0h+lgAd6S/Q+/gqA5sOKXLlGNpIqF4js+QngVyRQYtYMlICkp0O6mN1IHxa4U6qDtf8UJSzbCGFqfdElg75SREwuKa9VP6LRR6f3MEORlp/cdTPZwXhzHipla6WIhXMkugRFQ7cSD/rJcS85t2tkcutqYMwUaktfx2+BxdUCHooe/ksFsQqXj69u1m0EdeMrjwn5I0DW5ZaKaxj131A2MBfAlI8YaR3GJCCpo+hzkR9qpuI=

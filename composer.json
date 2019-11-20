@@ -1,0 +1,34 @@
+{
+    "name": "antodippo/exif-reader",
+    "description": "A simple, straightforward and fully typed, Exif reader library",
+    "type": "library",
+    "keywords": ["exif","images"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Antonello D'Ippolito",
+            "email": "antonellodippolito@gmail.com",
+            "homepage": "http://antodippo.com"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "ext-exif": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.4",
+        "infection/infection": "^0.14.2",
+        "giorgiosironi/eris": "^0.11.0",
+        "vimeo/psalm": "^3.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "ExifReader\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ExifReader\\Tests\\": "tests/"
+        }
+    }
+}
