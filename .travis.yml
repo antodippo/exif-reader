@@ -14,7 +14,7 @@ script:
   - docker-compose run --rm php73 vendor/bin/phpunit
   - rm -f composer.lock
   - docker-compose run --rm php74 composer install
-  - docker-compose run --rm php74 vendor/bin/psalm
+  - docker-compose run --rm php74 vendor/bin/psalm --shepherd
   - docker-compose run --rm php74 vendor/bin/phpunit --coverage-clover=coverage.xml --coverage-text
   - docker-compose run --rm php74 vendor/bin/infection --threads=4 --min-msi=95
 after_success:
