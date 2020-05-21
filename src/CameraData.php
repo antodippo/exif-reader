@@ -73,15 +73,15 @@ class CameraData
     public static function fromExifArray(array $exifArray): self
     {
         return new self(
-            isset($exifArray['Make']) ? Maker::fromString($exifArray['Make']) : Maker::undefined(),
-            isset($exifArray['Model']) ? Model::fromString($exifArray['Model']) : Model::undefined(),
-            isset($exifArray['MakerNote']) ? MakerNote::fromString($exifArray['MakerNote']) : MakerNote::undefined(),
+            isset($exifArray['Make']) ? Maker::fromString((string) $exifArray['Make']) : Maker::undefined(),
+            isset($exifArray['Model']) ? Model::fromString((string) $exifArray['Model']) : Model::undefined(),
+            isset($exifArray['MakerNote']) ? MakerNote::fromString((string) $exifArray['MakerNote']) : MakerNote::undefined(),
             isset($exifArray['Orientation']) && is_int($exifArray['Orientation']) ? Orientation::fromInt($exifArray['Orientation']) : Orientation::undefined(),
             isset($exifArray['ExposureProgram']) && is_int($exifArray['ExposureProgram']) ? ExposureProgram::fromInt($exifArray['ExposureProgram']) : ExposureProgram::undefined(),
-            isset($exifArray['ExposureTime']) ? ExposureTime::fromExifRational($exifArray['ExposureTime']) : ExposureTime::undefined(),
-            isset($exifArray['FocalLength']) ? FocalLength::fromExifRational($exifArray['FocalLength']) : FocalLength::undefined(),
+            isset($exifArray['ExposureTime']) ? ExposureTime::fromExifRational((string) (string) $exifArray['ExposureTime']) : ExposureTime::undefined(),
+            isset($exifArray['FocalLength']) ? FocalLength::fromExifRational((string) $exifArray['FocalLength']) : FocalLength::undefined(),
             isset($exifArray['Flash']) && is_int($exifArray['Flash']) ? Flash::fromInt($exifArray['Flash']) : Flash::undefined(),
-            isset($exifArray['ApertureValue']) ? Aperture::fromExifRational($exifArray['ApertureValue']) : Aperture::undefined(),
+            isset($exifArray['ApertureValue']) ? Aperture::fromExifRational((string) $exifArray['ApertureValue']) : Aperture::undefined(),
             isset($exifArray['ISOSpeedRatings']) && is_numeric($exifArray['ISOSpeedRatings']) ? ISOSpeed::fromInt((int)$exifArray['ISOSpeedRatings']) : ISOSpeed::undefined()
         );
     }

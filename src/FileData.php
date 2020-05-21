@@ -49,10 +49,10 @@ class FileData
     public static function fromExifArray(array $exifArray): self
     {
         return new self(
-            isset($exifArray['FileName']) ? FileName::fromString($exifArray['FileName']) : FileName::undefined(),
+            isset($exifArray['FileName']) ? FileName::fromString((string) $exifArray['FileName']) : FileName::undefined(),
             isset($exifArray['FileDateTime']) && is_int($exifArray['FileDateTime']) ? FileDateTime::fromTimestamp($exifArray['FileDateTime']) : FileDateTime::undefined(),
-            isset($exifArray['DateTime']) ? LastModifiedDate::fromString($exifArray['DateTime']) : LastModifiedDate::undefined(),
-            isset($exifArray['DateTimeOriginal']) ? TakenDate::fromString($exifArray['DateTimeOriginal']) : TakenDate::undefined(),
+            isset($exifArray['DateTime']) ? LastModifiedDate::fromString((string) $exifArray['DateTime']) : LastModifiedDate::undefined(),
+            isset($exifArray['DateTimeOriginal']) ? TakenDate::fromString((string) $exifArray['DateTimeOriginal']) : TakenDate::undefined(),
             isset($exifArray['FileSize']) && is_numeric($exifArray['FileSize']) ? FileSize::fromInt((int)$exifArray['FileSize']) : FileSize::undefined(),
             isset($exifArray['FileType']) && is_numeric($exifArray['FileType']) ? FileType::fromInt((int)$exifArray['FileType']) : FileType::undefined()
         );
