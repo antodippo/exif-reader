@@ -52,13 +52,13 @@ class FlashTest extends TestCase
     public function testItReturnEmptyString(): void
     {
         $this->forAll(Generator\choose(hexdec('5f') + 1, 1000))
-            ->then(function($fileTypeInt) {
+            ->then(function ($fileTypeInt) {
                 $fileType = Flash::fromInt($fileTypeInt);
                 $this->assertSame('', (string)$fileType);
             });
 
         $this->forAll(Generator\neg())
-            ->then(function($fileTypeInt) {
+            ->then(function ($fileTypeInt) {
                 $fileType = Flash::fromInt($fileTypeInt);
                 $this->assertSame('', (string)$fileType);
             });

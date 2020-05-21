@@ -21,12 +21,3 @@ class ExposureProgram
         8 => 'Landscape mode (for landscape photos with the background in focus)',
     ];
 }
-
-
-
-
-
-
-
-
-
