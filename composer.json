@@ -20,7 +20,8 @@
         "infection/infection": "^0.14.2 || ^0.15.0",
         "giorgiosironi/eris": "^0.11.0",
         "vimeo/psalm": "^3.7",
-        "friendsofphp/php-cs-fixer": "^2.16"
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "cweagans/composer-patches": "^1.6"
     },
     "autoload": {
         "psr-4": {
@@ -30,6 +31,13 @@
     "autoload-dev": {
         "psr-4": {
             "ExifReader\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "patches": {
+            "giorgiosironi/eris": {
+                "Fix PHP 7.4 deprecation": "https://patch-diff.githubusercontent.com/raw/giorgiosironi/eris/pull/125.patch"
+            }
         }
     }
 }
