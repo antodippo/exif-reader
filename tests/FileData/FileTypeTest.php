@@ -49,13 +49,13 @@ class FileTypeTest extends TestCase
     public function testItReturnEmptyString(): void
     {
         $this->forAll(Generator\choose(19, 1000))
-            ->then(function($fileTypeInt) {
+            ->then(function ($fileTypeInt) {
                 $fileType = FileType::fromInt($fileTypeInt);
                 $this->assertSame('', (string)$fileType);
             });
 
         $this->forAll(Generator\neg())
-            ->then(function($fileTypeInt) {
+            ->then(function ($fileTypeInt) {
                 $fileType = FileType::fromInt($fileTypeInt);
                 $this->assertSame('', (string)$fileType);
             });

@@ -133,5 +133,4 @@ class FileDataTest extends TestCase
             [[], ''],
         ];
     }
-
 }
