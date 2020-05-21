@@ -28,17 +28,18 @@ class GeoLocation
         $this->altitude = $altitude;
     }
 
+    /** @psalm-suppress MixedArgumentTypeCoercion */
     public static function fromExifArray(array $exifArray): self
     {
         return new self(
-            isset($exifArray['GPSLatitude']) && isset($exifArray['GPSLatitudeRef'])
-                ? Latitude::fromExifArray($exifArray['GPSLatitude'], $exifArray['GPSLatitudeRef'])
+            is_array($exifArray['GPSLatitude']) && isset($exifArray['GPSLatitudeRef'])
+                ? Latitude::fromExifArray($exifArray['GPSLatitude'], (string) $exifArray['GPSLatitudeRef'])
                 : Latitude::undefined(),
-            isset($exifArray['GPSLongitude']) && isset($exifArray['GPSLongitudeRef'])
-                ? Longitude::fromExifArray($exifArray['GPSLongitude'], $exifArray['GPSLongitudeRef'])
+            is_array($exifArray['GPSLongitude']) && isset($exifArray['GPSLongitudeRef'])
+                ? Longitude::fromExifArray($exifArray['GPSLongitude'], (string) $exifArray['GPSLongitudeRef'])
                 : Longitude::undefined(),
             isset($exifArray['GPSAltitude'])
-                ? Altitude::fromString($exifArray['GPSAltitude'])
+                ? Altitude::fromString((string) $exifArray['GPSAltitude'])
                 : Altitude::undefined()
         );
     }
