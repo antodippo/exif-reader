@@ -32,10 +32,10 @@ class GeoLocation
     public static function fromExifArray(array $exifArray): self
     {
         return new self(
-            is_array($exifArray['GPSLatitude']) && isset($exifArray['GPSLatitudeRef'])
+            isset($exifArray['GPSLatitude']) && is_array($exifArray['GPSLatitude']) && isset($exifArray['GPSLatitudeRef'])
                 ? Latitude::fromExifArray($exifArray['GPSLatitude'], (string) $exifArray['GPSLatitudeRef'])
                 : Latitude::undefined(),
-            is_array($exifArray['GPSLongitude']) && isset($exifArray['GPSLongitudeRef'])
+            isset($exifArray['GPSLongitude']) && is_array($exifArray['GPSLongitude']) && isset($exifArray['GPSLongitudeRef'])
                 ? Longitude::fromExifArray($exifArray['GPSLongitude'], (string) $exifArray['GPSLongitudeRef'])
                 : Longitude::undefined(),
             isset($exifArray['GPSAltitude'])

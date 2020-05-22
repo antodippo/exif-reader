@@ -1,25 +1,14 @@
 language: php
-services:
-  - docker
-before_install:
-  - docker-compose build --no-cache
+php:
+  - '7.2'
+  - '7.3'
+  - '7.4'
 script:
-  - rm -f composer.lock
-  - docker-compose run --rm php72 composer install
-  - docker-compose run --rm php72 vendor/bin/php-cs-fixer fix --diff --dry-run --stop-on-violation src/
-  - docker-compose run --rm php72 vendor/bin/psalm
-  - docker-compose run --rm php72 vendor/bin/phpunit
-  - rm -f composer.lock
-  - docker-compose run --rm php73 composer install
-  - docker-compose run --rm php73 vendor/bin/php-cs-fixer fix --diff --dry-run --stop-on-violation src/
-  - docker-compose run --rm php73 vendor/bin/psalm
-  - docker-compose run --rm php73 vendor/bin/phpunit
-  - rm -f composer.lock
-  - docker-compose run --rm php74 composer install
-  - docker-compose run --rm php74 vendor/bin/php-cs-fixer fix --diff --dry-run --stop-on-violation src/
-  - docker-compose run --rm php74 vendor/bin/psalm --shepherd
-  - docker-compose run --rm php74 vendor/bin/phpunit --coverage-clover=coverage.xml --coverage-text
-  - docker-compose run --rm php74 vendor/bin/infection --threads=4 --min-msi=95
+  - composer install
+  - vendor/bin/php-cs-fixer fix --diff --dry-run --stop-on-violation src/
+  - vendor/bin/psalm --shepherd
+  - vendor/bin/phpunit --coverage-clover=coverage.xml --coverage-text
+  - vendor/bin/infection --threads=4 --min-msi=95
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 env:
