@@ -1,5 +1,6 @@
 # Exif reader
 
+[![Latest Stable Version](https://poser.pugx.org/antodippo/exif-reader/v)](//packagist.org/packages/antodippo/exif-reader)
 [![Build Status](https://travis-ci.org/antodippo/exif-reader.svg?branch=master)](https://travis-ci.org/antodippo/exif-reader)
 [![codecov](https://codecov.io/gh/antodippo/exif-reader/branch/master/graph/badge.svg)](https://codecov.io/gh/antodippo/exif-reader)
 [![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fantodippo%2Fexif-reader%2Fmaster)](https://dashboard.stryker-mutator.io/reports/github.com/antodippo/exif-reader/master)
