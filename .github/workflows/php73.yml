@@ -1,0 +1,33 @@
+name: PHP7.3
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build containers
+        run:  docker-compose build
+
+      - name: Install dependencies
+        run:  docker-compose run --rm php73 composer install --prefer-dist --no-progress --no-suggest
+
+      - name: Clear cache
+        run:  docker-compose run --rm php73 vendor/bin/php-cs-fixer fix --diff --dry-run --stop-on-violation src/
+
+      - name: Psalm
+        run: docker-compose run --rm php73 vendor/bin/psalm
+
+      - name: PHPUnit
+        run: docker-compose run --rm php73 vendor/bin/phpunit
+
+      - name: Infection
+        run: docker-compose run --rm php73 vendor/bin/infection --threads=4 --min-msi=95
